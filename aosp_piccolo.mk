@@ -1,16 +1,14 @@
-# Boot animation
-TARGET_SCREEN_HEIGHT := 1920
-TARGET_SCREEN_WIDTH := 1080
-TARGET_BOOTANIMATION_HALF_RES := true
+# Boot animation res
+TARGET_BOOT_ANIMATION_RES := 1080
 
-# Inherit some common Lineage stuff
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit some common aosp stuff
+$(call inherit-product, vendor/aosp/common.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/bq/piccolo/full_piccolo.mk)
 
 PRODUCT_RELEASE_NAME := Aquaris M5
-PRODUCT_NAME := lineage_piccolo
+PRODUCT_NAME := aosp_piccolo
 
 # Set product device & name
 PRODUCT_BUILD_PROP_OVERRIDES += \
@@ -23,6 +21,3 @@ BUILD_FINGERPRINT := bq/Aquaris_M5/Aquaris_M5:7.1.2/N2G47H/1517833600:user/relea
 
 PRODUCT_GMS_CLIENTID_BASE := android-bq
 
-# Vendor security patch level
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.lineage.build.vendor_security_patch=2018-01-05

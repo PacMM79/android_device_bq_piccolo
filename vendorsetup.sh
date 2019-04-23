@@ -1,0 +1,3 @@
+add_lunch_combo aosp_piccolo-eng
+add_lunch_combo aosp_piccolo-user
+add_lunch_combo aosp_piccolo-userdebug
