@@ -32,6 +32,9 @@ TARGET_OTA_ASSERT_DEVICE := aquarism5,piccolo,Aquaris_M5
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 
+# Healthd
+BOARD_HEALTHD_CUSTOM_CHARGER_RES := $(DEVICE_PATH)/charger/images
+
 # Lineagehw
 BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/lineagehw/src
 TARGET_TAP_TO_WAKE_NODE := "/sys/devices/soc.0/78b9000.i2c/i2c-5/5-004a/en_gesture"
