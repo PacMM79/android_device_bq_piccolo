@@ -34,6 +34,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/calib.cfg:system/etc/display/calib.cfg \
 
+# Healthd packages
+PRODUCT_PACKAGES += \
+    charger_res_images \
+    charger_animation
+
 # IRQ balance
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/msm_irqbalance.conf:system/vendor/etc/msm_irqbalance.conf
