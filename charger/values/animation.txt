@@ -18,7 +18,7 @@
 animation: 3 2 charger/battery_scale
 
 # percent_display: text_percent_pos_x, text_percent_pos_y, color_r, color_g, color_b, color_a, font_file
-percent_display: c c 22 124 128 255 charger/font_log
+percent_display: c -200 255 255 255 255 charger/font_log
 
 fail: charger/battery_fail
 
