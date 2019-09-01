@@ -67,7 +67,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/vendor/etc/permissions/android.hardware.nfc.xml \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/vendor/etc/permissions/android.hardware.nfc.hce.xml \
-    $(LOCAL_PATH)/nfc/libnfc-brcm.conf:system/vendor/etc/libnfc-brcm.conf \
+    $(LOCAL_PATH)/nfc/libnfc-nci.conf:system/vendor/etc/libnfc-nci.conf \
     $(LOCAL_PATH)/nfc/libnfc-brcm-20795a20.conf:system/vendor/etc/libnfc-brcm-20795a20.conf \
     $(LOCAL_PATH)/nfc/nfcee_access.xml:system/etc/nfcee_access.xml
 
