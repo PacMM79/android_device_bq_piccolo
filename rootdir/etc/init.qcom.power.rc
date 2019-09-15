@@ -1,17 +1,16 @@
 on enable-low-power
-
     write /proc/sys/kernel/sched_boost 1
 
+    # RPS mask
     write /sys/class/net/rmnet0/queues/rx-0/rps_cpus 10
 
     # Enable adaptive LMK and set vmpressure_file_min
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
-    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 53059
+    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
 
     # HMP scheduler settings
     write /proc/sys/kernel/sched_window_stats_policy 3
-    write /proc/sys/kernel/sched_ravg_hist_size 3
-    write /proc/sys/kernel/sched_ravg_window 20000000
+    write /proc/sys/kernel/sched_ravg_hist_size 5
 
     # HMP Task packing settings
     write /proc/sys/kernel/sched_small_task 20
@@ -68,18 +67,21 @@ on enable-low-power
     # Enable low power modes
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
 
-    # update cpusets now that boot is complete and we want
-    # better load balancing
-    write /dev/cpuset/foreground/cpus 0-6
-    write /dev/cpuset/background/cpus 4-6
-    write /dev/cpuset/system-background/cpus 4-7
-    write /dev/cpuset/top-app/cpus 0-7
-    write /dev/cpuset/camera-daemon/cpus 4-7
-    # write /dev/cpuset/restricted/cpus 4-7
+    # Update foreground and background cpusets
+    write /dev/cpuset/foreground/cpus 0-7
+    write /dev/cpuset/background/cpus 3-5
+    write /dev/cpuset/system-background/cpus 2-6
+
+    # Per-process reclaim
+    write /sys/module/process_reclaim/parameters/enable_process_reclaim 1
+    write /sys/module/process_reclaim/parameters/pressure_min 10
+    write /sys/module/process_reclaim/parameters/per_swap_size 1024
+    write /sys/module/process_reclaim/parameters/pressure_max 70
+    write /sys/module/process_reclaim/parameters/swap_opt_eff 30
 
     # HMP scheduler (big.Little cluster related) settings
-    write /proc/sys/kernel/sched_upmigrate 93
-    write /proc/sys/kernel/sched_downmigrate 83
+    write /proc/sys/kernel/sched_upmigrate 90
+    write /proc/sys/kernel/sched_downmigrate 80
 
     rm /data/system/perfd/default_values
     start perfd
