@@ -1,4 +1,25 @@
+on boot
+
+    # Add a cpuset for the camera daemon
+    # we want all cores for camera
+    mkdir /dev/cpuset/camera-daemon
+    write /dev/cpuset/camera-daemon/cpus 0-7
+    write /dev/cpuset/camera-daemon/mems 0
+    chown system system /dev/cpuset/camera-daemon
+    chown system system /dev/cpuset/camera-daemon/tasks
+    chmod 0664 /dev/cpuset/camera-daemon/tasks
+
+    # Update foreground and background cpusets
+    # Reserve CPU 7 for the top app
+    write /dev/cpuset/foreground/cpus 0-6
+    write /dev/cpuset/foreground/boost/cpus 0-3
+    write /dev/cpuset/background/cpus 4-6
+    write /dev/cpuset/system-background/cpus 4-6
+    write /dev/cpuset/top-app/cpus 0-7
+    write /dev/cpuset/camera-daemon/cpus 4-7
+
 on enable-low-power
+
     write /proc/sys/kernel/sched_boost 1
 
     # RPS mask
@@ -6,7 +27,7 @@ on enable-low-power
 
     # Enable adaptive LMK and set vmpressure_file_min
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
-    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
+    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 53059
 
     # HMP scheduler settings
     write /proc/sys/kernel/sched_window_stats_policy 3
@@ -14,14 +35,36 @@ on enable-low-power
 
     # HMP Task packing settings
     write /proc/sys/kernel/sched_small_task 20
-    write /proc/sys/kernel/sched_mostly_idle_load 30
-    write /proc/sys/kernel/sched_mostly_idle_nr_run 3
+    write /sys/devices/system/cpu/cpu0/sched_mostly_idle_load 30
+    write /sys/devices/system/cpu/cpu1/sched_mostly_idle_load 30
+    write /sys/devices/system/cpu/cpu2/sched_mostly_idle_load 30
+    write /sys/devices/system/cpu/cpu3/sched_mostly_idle_load 30
+    write /sys/devices/system/cpu/cpu4/sched_mostly_idle_load 30
+    write /sys/devices/system/cpu/cpu5/sched_mostly_idle_load 30
+    write /sys/devices/system/cpu/cpu6/sched_mostly_idle_load 30
+    write /sys/devices/system/cpu/cpu7/sched_mostly_idle_load 30
 
-    write /sys/class/devfreq/qcom,mincpubw.65/governor "cpufreq"
-    write /sys/class/devfreq/qcom,cpubw.64/governor "bw_hwmon"
-    write /sys/class/devfreq/qcom,cpubw.64/bw_hwmon/io_percent 20
-    write /sys/class/devfreq/qcom,gpubw.61/governor "bw_hwmon"
-    write /sys/class/devfreq/qcom,gpubw.61/bw_hwmon/io_percent 40
+    write /sys/devices/system/cpu/cpu0/sched_mostly_idle_nr_run 3
+    write /sys/devices/system/cpu/cpu1/sched_mostly_idle_nr_run 3
+    write /sys/devices/system/cpu/cpu2/sched_mostly_idle_nr_run 3
+    write /sys/devices/system/cpu/cpu3/sched_mostly_idle_nr_run 3
+    write /sys/devices/system/cpu/cpu4/sched_mostly_idle_nr_run 3
+    write /sys/devices/system/cpu/cpu5/sched_mostly_idle_nr_run 3
+    write /sys/devices/system/cpu/cpu6/sched_mostly_idle_nr_run 3
+    write /sys/devices/system/cpu/cpu7/sched_mostly_idle_nr_run 3
+
+    write /sys/devices/system/cpu/cpu0/sched_prefer_idle 0
+    write /sys/devices/system/cpu/cpu1/sched_prefer_idle 0
+    write /sys/devices/system/cpu/cpu2/sched_prefer_idle 0
+    write /sys/devices/system/cpu/cpu3/sched_prefer_idle 0
+    write /sys/devices/system/cpu/cpu4/sched_prefer_idle 0
+    write /sys/devices/system/cpu/cpu5/sched_prefer_idle 0
+    write /sys/devices/system/cpu/cpu6/sched_prefer_idle 0
+    write /sys/devices/system/cpu/cpu7/sched_prefer_idle 0
+
+    write /sys/class/devfreq/soc:qcom,cpubw/governor bw_hwmon
+    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/io_percent 20
+    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/guard_band_mbps 30
 
     # Disable thermal core_control to update interactive gov settings
     write /sys/module/msm_thermal/core_control/enabled 0
@@ -48,6 +91,7 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy 0
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "1 800000:90"
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 40000
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/sampling_down_factor 40000
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 200000
 
     # Enable thermal core_control now
@@ -67,21 +111,39 @@ on enable-low-power
     # Enable low power modes
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
 
-    # Update foreground and background cpusets
-    write /dev/cpuset/foreground/cpus 0-7
-    write /dev/cpuset/background/cpus 3-5
-    write /dev/cpuset/system-background/cpus 2-6
+    # HMP scheduler (big.Little cluster related) settings
+    write /proc/sys/kernel/sched_upmigrate 93
+    write /proc/sys/kernel/sched_downmigrate 83
 
-    # Per-process reclaim
+    # Enable sched guided freq control
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load 1
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif 1
+    write /proc/sys/kernel/sched_freq_inc_notify 50000
+    write /proc/sys/kernel/sched_freq_dec_notify 50000
+
+    # Enable dynamic clock gating
+    write /sys/module/lpm_levels/lpm_workarounds/dynamic_clock_gating 1
+
+    # Enable timer migration to little cluster
+    write /proc/sys/kernel/power_aware_timer_migration 1
+
+    # Set per_process_reclaim tuning parameters
     write /sys/module/process_reclaim/parameters/enable_process_reclaim 1
-    write /sys/module/process_reclaim/parameters/pressure_min 10
-    write /sys/module/process_reclaim/parameters/per_swap_size 1024
     write /sys/module/process_reclaim/parameters/pressure_max 70
     write /sys/module/process_reclaim/parameters/swap_opt_eff 30
+    write /sys/module/process_reclaim/parameters/pressure_min 50
+    write /sys/module/process_reclaim/parameters/per_swap_size 512
 
-    # HMP scheduler (big.Little cluster related) settings
-    write /proc/sys/kernel/sched_upmigrate 90
-    write /proc/sys/kernel/sched_downmigrate 80
+    # Set lowmemorykiller tuning parameters
+    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
+    write /sys/module/lowmemorykiller/parameters/minfree "15360,19200,23040,26880,34415,43737"
+    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 53059
+
+    # Set ZCache parameters
+    write /sys/module/zcache/parameters/clear_percent 3
+    write /sys/module/zcache/parameters/max_pool_percent 30
 
     rm /data/system/perfd/default_values
     start perfd
