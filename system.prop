@@ -10,3 +10,9 @@ ro.opengles.version=196610
 # Perfd
 ro.min_freq_0=200000
 ro.min_freq_4=200000
+
+# IMS
+persist.dbg.volte_avail_ovr=0
+persist.dbg.vt_avail_ovr=0
+persist.dbg.wfc_avail_ovr=0
+
