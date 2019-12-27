@@ -10,11 +10,10 @@ on boot
     chmod 0664 /dev/cpuset/camera-daemon/tasks
 
     # Update foreground and background cpusets
-    # Reserve CPU 7 for the top app
     write /dev/cpuset/foreground/cpus 0-6
-    write /dev/cpuset/foreground/boost/cpus 0-3
-    write /dev/cpuset/background/cpus 4-6
-    write /dev/cpuset/system-background/cpus 4-6
+    write /dev/cpuset/foreground/boost/cpus 0-1
+    write /dev/cpuset/background/cpus 4-7
+    write /dev/cpuset/system-background/cpus 4-7
     write /dev/cpuset/top-app/cpus 0-7
     write /dev/cpuset/camera-daemon/cpus 4-7
 
@@ -114,6 +113,7 @@ on enable-low-power
     # HMP scheduler (big.Little cluster related) settings
     write /proc/sys/kernel/sched_upmigrate 93
     write /proc/sys/kernel/sched_downmigrate 83
+    write /proc/sys/kernel/sched_upmigrate_min_nice 19
 
     # Enable sched guided freq control
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 1
@@ -137,9 +137,7 @@ on enable-low-power
     write /sys/module/process_reclaim/parameters/per_swap_size 512
 
     # Set lowmemorykiller tuning parameters
-    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
-    write /sys/module/lowmemorykiller/parameters/minfree "15360,19200,23040,26880,34415,43737"
-    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 53059
+    write /sys/module/lowmemorykiller/parameters/minfree "18432,23040,27648,32256,36864,46080"
 
     # Set ZCache parameters
     write /sys/module/zcache/parameters/clear_percent 3
