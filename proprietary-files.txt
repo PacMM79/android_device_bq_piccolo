@@ -170,6 +170,7 @@ vendor/lib/librs_adreno_sha1.so
 vendor/lib/libRSDriver_adreno.so
 vendor/lib/libsc-a3xx.so
 vendor/lib/libscale.so
+vendor/lib/libhwc2onfbadapter.so
 
 # Graphics firmware
 etc/firmware/a420_pfp.fw:vendor/firmware/a420_pfp.fw
