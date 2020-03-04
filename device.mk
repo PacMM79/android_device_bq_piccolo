@@ -90,8 +90,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
+    fstab.qcom \
     init.qcom.power.rc \
-    init.target.rc
+    init.target.rc \
+    init.recovery.qcom.rc
 
 # SurfaceFlinger
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
