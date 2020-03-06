@@ -245,6 +245,7 @@ vendor/lib/libsettings.so|44b7221b87a62f196b59d6beeaf84641a2ca1997
 vendor/lib/libsmemlog.so
 vendor/lib/libsystem_health_mon.so
 vendor/lib/libxml.so
+vendor/lib/hw/com.qualcomm.qti.ant@1.0-impl.so|66b356e832ec1c045b80b1508162430c99927bb3
 
 # Sensors
 bin/sensord:vendor/bin/sensord
