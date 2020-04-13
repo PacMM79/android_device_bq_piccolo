@@ -142,6 +142,7 @@ vendor/lib/libflp.so
 vendor/lib/libgeofence.so
 vendor/lib/libizat_core.so
 vendor/lib/liblbs_core.so
+vendor/lib/libloc_ds_api.so
 
 # Graphics
 vendor/lib/egl/eglsubAndroid.so
