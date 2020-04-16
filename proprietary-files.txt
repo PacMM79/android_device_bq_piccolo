@@ -199,6 +199,10 @@ bin/msm_irqbalance:vendor/bin/msm_irqbalance
 vendor/bin/perfd
 vendor/lib/libqti-perfd-client.so
 
+# Peripheral Manager
+vendor/bin/pm-service
+vendor/lib/libperipheral_client.so
+
 # Postprocessing
 bin/mm-pp-daemon:vendor/bin/mm-pp-daemon
 vendor/lib/libdisp-aba.so
@@ -213,7 +217,6 @@ bin/irsc_util:vendor/bin/irsc_util
 vendor/lib/libdiag.so
 vendor/lib/libdsutils.so
 vendor/lib/libidl.so
-vendor/lib/libperipheral_client.so
 vendor/lib/libqcci_legacy.so
 vendor/lib/libqdi.so
 vendor/lib/libqdp.so
