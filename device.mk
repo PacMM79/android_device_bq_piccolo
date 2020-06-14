@@ -20,19 +20,6 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
-# Dalvik heap
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapgrowthlimit=256m \
-    dalvik.vm.heapmaxfree=8m \
-    dalvik.vm.heapminfree=512k \
-    dalvik.vm.heapsize=512m \
-    dalvik.vm.heapstartsize=8m \
-    dalvik.vm.heaptargetutilization=0.75 \
-    ro.sys.fw.dex2oat_thread_count=4 \
-    dalvik.vm.boot-dex2oat-threads=8 \
-    dalvik.vm.dex2oat-threads=4 \
-    dalvik.vm.image-dex2oat-threads=4
-
 # Audio
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/mixer_paths_skuk.xml:system/vendor/etc/mixer_paths_skuk.xml
