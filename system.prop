@@ -3,6 +3,18 @@ voice.playback.conc.disabled=true
 voice.record.conc.disabled=true
 voice.voip.conc.disabled=true
 
+# Camera
+persist.camera.cpp.duplication=false
+camera2.portability.force_api=1
+persist.camera.hal.debug.mask=0
+
+# Media
+media.stagefright.legacyencoder=true
+media.stagefright.less-secure=true
+
 # Perfd
 ro.min_freq_0=200000
 ro.min_freq_4=200000
+
+# First api level, device has been commercially launched
+ro.product.first_api_level=21
