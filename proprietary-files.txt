@@ -205,7 +205,7 @@ vendor/bin/pm-service
 vendor/lib/libperipheral_client.so
 
 # Postprocessing
-bin/mm-pp-daemon:vendor/bin/mm-pp-daemon
+vendor/bin/mm-pp-daemon
 vendor/lib/libdisp-aba.so
 vendor/lib/libmm-abl.so
 vendor/lib/libmm-abl-oem.so
@@ -231,10 +231,10 @@ vendor/lib/libqmi_encdec.so
 vendor/lib/libqmiservices.so
 
 # Radio
-bin/netmgrd:vendor/bin/netmgrd|d77099ffd5a90c00d01c724afff1c5af65017810
-bin/qmuxd:vendor/bin/qmuxd|6520977546405d9d056c9e9e924668721b2d51b1
-bin/radish:vendor/bin/radish
-bin/rmt_storage:vendor/bin/rmt_storage
+vendor/bin/netmgrd|d77099ffd5a90c00d01c724afff1c5af65017810
+vendor/bin/qmuxd|6520977546405d9d056c9e9e924668721b2d51b1
+vendor/bin/radish
+vendor/bin/rmt_storage
 vendor/lib/libcneapiclient.so|bc72c9476b60a12bbb6c4c56038ff3bc8234c178
 vendor/lib/libconfigdb.so
 vendor/lib/libdsi_netctrl.so|ec582c12b8ba3ecdeb71094e267eff8e2d9d396d
@@ -253,8 +253,8 @@ vendor/lib/libxml.so
 vendor/lib/hw/com.qualcomm.qti.ant@1.0-impl.so|66b356e832ec1c045b80b1508162430c99927bb3
 
 # Sensors
-bin/sensord:vendor/bin/sensord
-lib/hw/sensors.msm8916.so:vendor/lib/hw/sensors.msm8916.so
+vendor/bin/sensord
+vendor/lib/hw/sensors.msm8916.so
 
 # Thermal
 vendor/bin/thermal-engine|01f1732dc939b87c681479e6beb3f0ed345fe01b
