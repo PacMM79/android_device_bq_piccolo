@@ -1,2 +1,2 @@
-allow hal_nfc_default nfc_data_file:dir { search getattr };
-allow hal_nfc_default nfc_data_file:file { read open write };
+allow hal_nfc_default nfc_data_file:dir { search getattr write add_name };
+allow hal_nfc_default nfc_data_file:file { read open write create };
