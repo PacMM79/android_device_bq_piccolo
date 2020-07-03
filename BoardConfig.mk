@@ -19,9 +19,6 @@
 
 DEVICE_PATH := device/bq/piccolo
 
-# Platform
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno405
-
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/bq/msm8939
 TARGET_KERNEL_CONFIG := piccolo_defconfig
