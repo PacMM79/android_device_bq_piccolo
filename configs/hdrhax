@@ -67,3 +67,12 @@ morpho.denoiser.umaskthreshold=0
 morpho.denoiser.umaskweight=256
 persist.camera.cpp.duplication=false
 persist.camera.pip.support=0
+
+# Display
+debug.composition.type=c2d
+persist.hwc.mdpcomp.enable=true
+debug.mdpcomp.idletime=600
+debug.sf.gpu_comp_tiling=1
+sys.hwc.gpu_perf_mode=1
+debug.enable.sglscale=1
+
