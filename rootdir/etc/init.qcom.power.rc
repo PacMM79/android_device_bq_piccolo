@@ -93,8 +93,8 @@ on enable-low-power
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
 
     # HMP scheduler (big.Little cluster related) settings
-    write /proc/sys/kernel/sched_upmigrate 93
-    write /proc/sys/kernel/sched_downmigrate 83
+    write /proc/sys/kernel/sched_upmigrate 80
+    write /proc/sys/kernel/sched_downmigrate 65
     write /proc/sys/kernel/sched_upmigrate_min_nice 19
 
     # Enable sched guided freq control
@@ -124,6 +124,8 @@ on enable-low-power
     # Set ZCache parameters
     write /sys/module/zcache/parameters/clear_percent 3
     write /sys/module/zcache/parameters/max_pool_percent 30
+
+    setprop vendor.post_boot.parsed 1
 
     rm /data/system/perfd/default_values
     start perfd
