@@ -270,7 +270,10 @@ vendor/lib/libthermalclient.so
 vendor/lib/libthermalioctl.so
 
 # Time services
-vendor/lib/libtime_genoff.so
+-app/TimeService/TimeService.apk:vendor/app/TimeService/TimeService.apk
+bin/time_daemon:vendor/bin/time_daemon
+-vendor/lib/libtime_genoff.so
+vendor/lib/libTimeService.so
 
 # Touchscreen
 etc/firmware/A4_15_2.2_AA.raw:vendor/firmware/A4_15_2.2_AA.raw
