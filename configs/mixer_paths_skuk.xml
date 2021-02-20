@@ -58,18 +58,18 @@
     <!--ctl name="HPOUT Digital Volume" value="126" /-->
     <ctl name="HPOUT1L Digital Volume" value="126" />
     <ctl name="HPOUT1R Digital Volume" value="126" />
-    <ctl name="RX1 Digital Volume" value="84" />
-    <ctl name="RX2 Digital Volume" value="84" />
-    <ctl name="RX3 Digital Volume" value="84" />
-    <ctl name="IIR1 INP1 Volume" value="84" />
-    <ctl name="IIR1 INP2 Volume" value="84" />
-    <ctl name="IIR1 INP3 Volume" value="84" />
-    <ctl name="IIR1 INP4 Volume" value="84" />
+    <ctl name="RX1 Digital Volume" value="86" />
+    <ctl name="RX2 Digital Volume" value="86" />
+    <ctl name="RX3 Digital Volume" value="86" />
+    <ctl name="IIR1 INP1 Volume" value="92" />
+    <ctl name="IIR1 INP2 Volume" value="92" />
+    <ctl name="IIR1 INP3 Volume" value="92" />
+    <ctl name="IIR1 INP4 Volume" value="92" />
     <ctl name="ADC1 Volume" value="6" />
     <ctl name="ADC2 Volume" value="6" />
     <ctl name="ADC3 Volume" value="6" />
-    <ctl name="DEC1 Volume" value="84" />
-    <ctl name="DEC2 Volume" value="84" />
+    <ctl name="DEC1 Volume" value="86" />
+    <ctl name="DEC2 Volume" value="86" />
     <ctl name="DEC2 MUX" value="ZERO" />
     <ctl name="DEC1 MUX" value="ZERO" />
     <ctl name="ADC2 MUX" value="ZERO" />
@@ -224,6 +224,7 @@
     </path>
 
     <path name="deep-buffer-playback bt-sco-wb">
+        <ctl name="Internal BTSCO SampleRate" value="16000" />
         <path name="deep-buffer-playback bt-sco" />
     </path>
 
@@ -258,6 +259,7 @@
     </path>
 
     <path name="low-latency-playback bt-sco-wb">
+        <ctl name="Internal BTSCO SampleRate" value="16000" />
         <path name="low-latency-playback bt-sco" />
     </path>
 
@@ -573,15 +575,18 @@
 
     <!-- These are actual sound device specific mixer settings -->
     <path name="adc1">
+    	<ctl name="ADC1 Volume" value="6" />
         <ctl name="DEC1 MUX" value="ADC1" />
     </path>
 
     <path name="adc2">
+   	<ctl name="ADC2 Volume" value="5" />
         <ctl name="DEC1 MUX" value="ADC2" />
         <ctl name="MICBIAS CAPLESS Switch" value="1" />
     </path>
 
     <path name="adc3">
+    	<ctl name="ADC3 Volume" value="6" />
         <ctl name="DEC1 MUX" value="ADC2" />
         <ctl name="ADC2 MUX" value="INP3" />
     </path>
@@ -671,7 +676,7 @@
 	<!-- delete by henry
         <ctl name="RX1 MIX1 INP1" value="RX1" />
         <ctl name="RDAC2 MUX" value="RX1" />
-        <ctl name="RX1 Digital Volume" value="84" />
+        <ctl name="RX1 Digital Volume" value="86" />
         <ctl name="EAR PA Gain" value="POS_6_DB" />
         <ctl name="EAR_S" value="Switch" />
 	-->
@@ -725,6 +730,7 @@
         <ctl name="RDAC2 MUX" value="RX2" />
         <ctl name="HPHL" value="Switch" />
         <ctl name="HPHR" value="Switch" />
+	<ctl name="headset amp" value="ENABLE"/>
     </path>
     <path name="headset-mic">
         <path name="adc2" />
@@ -834,6 +840,7 @@
     <path name="speaker-and-headphones">
         <path name="headphones" />
         <path name="speaker" />
+        <ctl name="Lineout_1 amp" value="DUALMODE"/>
     </path>
 
     <path name="usb-headphones">
